@@ -4,7 +4,14 @@ require "net/http"
 require "uri"
 
 gopro_ip = '10.5.5.9'
+exposures = ['0', '2', '4', '6', '8']
+
 @gopro_control = 'http://' + gopro_ip + '/gp/gpControl/'
+
+if ARGV.empty?
+  puts "ruby gopro_hdr.rb [delay] [init ? true : false]"
+  exit 1
+end
 
 delay = ARGV[0]
 init = ARGV[1]
@@ -43,9 +50,6 @@ if init == 'true'
     sleep delay.to_i
 
 end
-
-
-exposures = ['0', '2', '4', '6', '8']
 
 exposures.each do |p|
 
